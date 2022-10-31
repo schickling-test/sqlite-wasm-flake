@@ -10,8 +10,9 @@
         pkgs = import nixpkgs { inherit system; };
       in
       {
-
-        # packages.default = pkgs.cowsay;
+        packages = {
+          althttpd = pkgs.callPackage ./packages/althttpd.nix { };
+        };
 
         devShell = with pkgs; pkgs.mkShell {
           buildInputs = [
@@ -20,11 +21,12 @@
             wabt
             emscripten
             unzip
-            althttpd
+            # althttpd
+            self.packages.${system}.althttpd # need newer version with `--enable-sab` flag
           ];
 
           shellHook = ''
-            cp -r ${pkgs.emscripten}/share/emscripten/cache/ ~/.emscripten_cache
+            cp -r /nix/store/${pkgs.emscripten}/share/emscripten/cache/ ~/.emscripten_cache
             chmod u+rwX -R ~/.emscripten_cache
             export EM_CACHE=~/.emscripten_cache
           '';
