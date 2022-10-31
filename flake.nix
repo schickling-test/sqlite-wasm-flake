@@ -26,9 +26,9 @@
           ];
 
           shellHook = ''
-            cp -r ${pkgs.emscripten}/share/emscripten/cache/ ~/.emscripten_cache
-            chmod u+rwX -R ~/.emscripten_cache
-            export EM_CACHE=~/.emscripten_cache
+            cp -r ${pkgs.emscripten}/share/emscripten/cache/ /tmp/emscripten_cache_sqlite
+            chmod u+rwX -R /tmp/emscripten_cache_sqlite
+            export EM_CACHE=/tmp/emscripten_cache_sqlite
           '';
 
         };
