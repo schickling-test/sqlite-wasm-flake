@@ -26,7 +26,7 @@
           ];
 
           shellHook = ''
-            cp -r /nix/store/${pkgs.emscripten}/share/emscripten/cache/ ~/.emscripten_cache
+            cp -r ${pkgs.emscripten}/share/emscripten/cache/ ~/.emscripten_cache
             chmod u+rwX -R ~/.emscripten_cache
             export EM_CACHE=~/.emscripten_cache
           '';
